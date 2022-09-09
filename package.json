@@ -1,10 +1,10 @@
 {
-  "name": "onlinetextEditor",
+  "name": "onlinetexteditor",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd backend && npm install && npm run  build && npm start"
+    "start": "cd backend && npm install && npm run tsc && npm start"
   },
   "keywords": [],
   "author": "",
