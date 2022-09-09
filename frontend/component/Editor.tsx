@@ -10,7 +10,7 @@ const cpp=`#include <iostream> \nusing namespace std; \nint main(){\n cout<<"Hel
 
 
 
-function EditorArea({prop}) {
+function EditorArea() {
   const availableLanguage=[{name:"CPP",value:"cpp"}]
   // ,{name:"Python",value:"py"}
   const [code, setCode] = React.useState(cpp);
@@ -61,7 +61,7 @@ function EditorArea({prop}) {
   <option value="opel">Opel</option>
   <option value="audi">Audi</option> */}
 </select>
-    <div className={prop}>
+    <div className={styles.code}>
     
 
     <Editor

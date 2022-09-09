@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       </Head>
     
       {/* <textarea className={styles.code}  name="code" id="code" /> */}
-      <EditorArea  prop={styles.code} />
+      <EditorArea />
     </div>
   )
 }
