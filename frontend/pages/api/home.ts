@@ -1,8 +1,9 @@
 import axios from "axios"
 import { chownSync } from "fs";
 import qs from "qs";
+import { SERVER_URL } from "../../config.keys";
 const instance=axios.create({
-    baseURL:"http://localhost:8000/"
+    baseURL:SERVER_URL
 })
 
 export const sendCode=({language="cpp",code=""})=>{
