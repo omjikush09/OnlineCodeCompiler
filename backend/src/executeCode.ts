@@ -52,13 +52,13 @@ return new Promise((resolve,reject)=>{
         console.log(id,"id")
         console.log(dirStr)
             // resolve(stdout);
-             exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
-            console.log(error)
-            error && reject({ error, stderr });
-            stderr && reject(stderr);
+        //      exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
+        //     console.log(error)
+        //     error && reject({ error, stderr });
+        //     stderr && reject(stderr);
             
-            resolve(stdout);
-        })
+        //     resolve(stdout);
+        // })
         })
         //`./${id}`
         // console.log(`cd ./src/codes/ && ./${id}`);
@@ -68,6 +68,25 @@ return new Promise((resolve,reject)=>{
     
 
 }
+
+// const  getSolutionCpp=(req:Request,res:Response, id:string)=>{
+//     return (
+    
+//          exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
+//             console.log(error)
+//             if(error) return res.status(400).json({ error, stderr });
+//             stderr && reject(stderr);
+            
+//             resolve(stdout);
+//         })
+    
+//     )
+// }
+
+// const sendError=(res:Response,error:string)=>{
+//     return res.status
+// }
+
 
 
 export {executeCppCode,executePyCode};

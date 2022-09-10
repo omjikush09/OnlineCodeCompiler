@@ -4,8 +4,8 @@ import {v4} from "uuid"
 const dirCode=path.join(__dirname,"codes");
 
 
-const generatefile=async (format:string,code:string)=>{
-    const id=v4();
+const generatefile=async (format:string,id:Number,code:string)=>{
+    
     const filename=`${id}.${format}`
     const filepath=path.join(dirCode,filename);
     
