@@ -1,11 +1,14 @@
-import { Request,Response } from "express";
+import { json, Request,Response } from "express";
 import express from "express";
 import path from "path";
 const app=express();
 import generatefile from "./getSourceCode"
 import {executeCppCode,executePyCode} from "./executeCode"
 import cors from "cors";
-
+import { run } from "./kafka/topic";
+import { sendMessage } from "./kafka/producer";
+import { getCodeFromKafka } from "./kafka/consumer";
+run();
 
 
 
@@ -20,6 +23,7 @@ app.post("/code",async (req:Request,res:Response)=>{
 
     // let ee={dfd:"fd"};
     const code:string=req.body.code;
+    const id=req.body.id || 34;
     // console.log(req.body)
     if(code==undefined ||code.length==0){
         // console.log("he")
@@ -32,11 +36,12 @@ app.post("/code",async (req:Request,res:Response)=>{
             language=req.query.language;
             if(language=="cpp"){
                 try {
-                    const filepath=await generatefile(language,code);
+                    const filepath:string=await generatefile(language,code);
                     console.log(filepath,"fdfdfdf");
-                    
-                const output=await executeCppCode(filepath);
-                return res.json({output})
+                    const msg=JSON.stringify({id,language,code,filepath});
+                    sendMessage(msg);
+                // const output=await executeCppCode(filepath);
+                return res.json("Submitted Successfully......Wait for execution")
                 } catch (error) {
                     res.status(400).json(error);
                 }
@@ -71,7 +76,7 @@ app.post("/code",async (req:Request,res:Response)=>{
     // return res.json({ee:"efef"})
 })
 
-
+getCodeFromKafka();
 const port=process.env.PORT || 8000;
 
 app.listen(port,()=>{
