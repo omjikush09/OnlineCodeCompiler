@@ -6,15 +6,10 @@ const instance=axios.create({
     baseURL:SERVER_URL
 })
 
-export const sendCode=({language="cpp",code=""})=>{
+export const sendCode= async ({language="cpp",code="",id=""})=>{
     const url=`/code?language=${language}`
-    const options = {
-        method: 'POST',
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        data:{code},
-        url,
-      };
-    return instance.post(url,{code}).then(res=>{
+   
+    return instance.post(url,{code,id}).then(res=>{
         // console.log(res.data)
         return res.data;
     }).catch(res=> {
@@ -24,7 +19,17 @@ export const sendCode=({language="cpp",code=""})=>{
 
 }
 
+export const getSolution= async ({language="cpp",id=""})=>{
+    const url=`/getSolution?language=${language}&id=${id}`
 
+    return instance.get(url).then(res=>{
+        return res.data;
+    }).catch(res=>{
+        return Promise.reject(res.response);
+    })
+
+
+}
 
 
 

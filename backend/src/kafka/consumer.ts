@@ -23,6 +23,12 @@ export const getCodeFromKafka =async ()=>{
                 const value=result.message.value?.toString()!;
                 const msg=JSON.parse(value)
                 executeCppCode(msg)
+
+                // try {
+                    
+                // } catch (error) {
+                    
+                // }
             }
         })
      

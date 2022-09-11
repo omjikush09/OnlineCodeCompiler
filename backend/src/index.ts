@@ -11,7 +11,7 @@ import { run } from "./kafka/topic";
 import { sendMessage } from "./kafka/producer";
 import { getCodeFromKafka } from "./kafka/consumer";
 import { ENVIRONMENT } from "./config.keys";
-
+const outputPath=path.join(__dirname,"outputs")
 run();
 
 
@@ -79,7 +79,7 @@ app.post("/code",async (req:Request,res:Response)=>{
 
 
 
-app.get("/getSolution",(req:Request,res:Response)=>{
+app.get("/getsolution",async (req:Request,res:Response)=>{
     
 
 
@@ -89,14 +89,23 @@ app.get("/getSolution",(req:Request,res:Response)=>{
     }
     let id=req.query.id
     // let dirStr=const dirCode=path.join(__dirname,"codes");
-    const dirStr=ENVIRONMENT=="production"?"./dist/codes":"./src/codes"
-    exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
-        console.log(error)
-        if(error)  return res.status(400).json({ error, stderr });
-        if(stderr) return  res.status(400).json(stderr);
+    // const dirStr=ENVIRONMENT=="production"?"./dist/codes":"./src/codes"
+    const filename=`${id}.txt`
+    const filepath=path.join(outputPath,filename);
+     fs.readFile(filepath,(err,data)=>{
+        if(err){
+            return res.status(400).json("file not found check, check your id or wait...")
+        }
+        return res.json({output:data.toString()});
+     })
+
+    // exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
+    //     console.log(error)
+    //     if(error)  return res.status(400).json({ error, stderr });
+    //     if(stderr) return  res.status(400).json(stderr);
         
-        return res.json({output:stdout});
-    })
+    //     return res.json({output:stdout});
+    // })
 
 })
 

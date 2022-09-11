@@ -47,18 +47,22 @@ const executeCppCode=(filepath:string)=>{
 return new Promise((resolve,reject)=>{
     exec(`docker run --rm -v "${dirCode}":/usr/src/myapp -w /usr/src/myapp gcc:latest g++ -o ${id} ${id}.cpp`,(error,stdout,stderr)=>{
         console.log(error)
-        if(error) return reject({ error, stderr });
+        if(error){ 
+                let e=error.toString();
+            generateOutputTxt(id,e);
+            return reject({ error, stderr })};
         stderr && reject(stderr);
         console.log(id,"id")
         console.log(dirStr)
             // resolve(stdout);
-        //      exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
-        //     console.log(error)
-        //     error && reject({ error, stderr });
-        //     stderr && reject(stderr);
-            
-        //     resolve(stdout);
-        // })
+             exec(`cd ${dirStr} && ./${id}`,(error,stdout,stderr)=>{
+            console.log(error)
+
+            error && reject({ error, stderr });
+            stderr && reject(stderr);
+            generateOutputTxt(id,stdout);
+            resolve(stdout);
+        })
         })
         //`./${id}`
         // console.log(`cd ./src/codes/ && ./${id}`);
@@ -66,6 +70,23 @@ return new Promise((resolve,reject)=>{
        
     })
     
+
+}
+
+const generateOutputTxt=async (id:string,code:string)=>{
+    
+    const filename=`${id}.txt`
+    const filepath=path.join(outputPath,filename);
+    
+     fs.writeFile(filepath,code,(err)=>{
+        if(err){
+            return Promise.reject(err);
+        }
+        
+    });
+    return  filepath;
+    // console.log(filepath)
+
 
 }
 

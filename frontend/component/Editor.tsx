@@ -4,43 +4,58 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
-import { sendCode } from '../pages/api/home';
+import { sendCode, getSolution } from '../pages/api/home';
 import styles from "../styles/Home.module.css"
 const cpp=`#include <iostream> \nusing namespace std; \nint main(){\n cout<<"Hello World";\n} `
-
+import {v4} from "uuid"
 
 
 function EditorArea() {
   const availableLanguage=[{name:"CPP",value:"cpp"}]
   // ,{name:"Python",value:"py"}
-  const [code, setCode] = React.useState(cpp);
+  const [id,setId]=useState(v4())
+  const [code, setCode] = useState(cpp);
   const [language,setLanguage]=useState<string>("cpp");
   const [disabled,setDisabled]=useState(false);
   const [output,setOutput]=useState("");
   const [errors,setErrors]=useState("");
     // const [FontSize,setFontSize]=useState<string | number >(20)
 
-  const onSubmit=async ()=>{
+const onSubmit=async ()=>{
     setDisabled(true);
     setErrors("");
     try {
       // console.log(code);
-      const {output}=await sendCode({language,code});
+      const output=await sendCode({language,code,id});
       // console.log(output)
-      setOutput(output);
+      // setOutput(output);
       // setDisabled(false)
+      setTimeout(()=>{
+        getCode();
+      },1000)
     } catch (error:any) {
-      // const e=error.toString();
-      // console.log(error)
-      // setDisabled(false)
+      setErrors("Something Went Wrong")
+      
       if(error.data && error.data.stderr){
         setOutput(error.data.stderr);
+      }else{
+        
       }
-      setErrors("Something Went Wrong")
     }
 
-  }
+}
 
+const getCode=async ()=>{
+
+  try {
+    const {output}= await getSolution({id});
+    setOutput(output);
+  } catch (error) {
+    setTimeout(()=>{
+      getCode();
+    },1000)
+  }
+}
 
 
 
@@ -66,8 +81,7 @@ function EditorArea() {
 
     <Editor
       
-      
-      
+          
       value={code}
       onValueChange={code => {setCode(code)
       setDisabled(false)}}
