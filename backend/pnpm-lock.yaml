@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@types/cors': ^2.8.12
   '@types/express': ^4.17.13
+  '@types/node': ^18.7.16
   '@types/uuid': ^8.3.4
   cors: ^2.8.5
   dotenv: ^16.0.2
@@ -20,8 +21,9 @@ dependencies:
 devDependencies:
   '@types/cors': 2.8.12
   '@types/express': 4.17.13
+  '@types/node': 18.7.16
   '@types/uuid': 8.3.4
-  ts-node-dev: 2.0.0_typescript@4.8.2
+  ts-node-dev: 2.0.0_yw6xa4t7bqskzhgfioyr35wfuq
   typescript: 4.8.2
 
 packages:
@@ -69,13 +71,13 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 18.7.14
+      '@types/node': 18.7.16
     dev: true
 
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.7.14
+      '@types/node': 18.7.16
     dev: true
 
   /@types/cors/2.8.12:
@@ -85,7 +87,7 @@ packages:
   /@types/express-serve-static-core/4.17.30:
     resolution: {integrity: sha512-gstzbTWro2/nFed1WXtf+TtrpwxH7Ggs4RLYTLbeVgIkUQOI3WG/JKjgeOU1zXDvezllupjrf8OPIdvTbIaVOQ==}
     dependencies:
-      '@types/node': 18.7.14
+      '@types/node': 18.7.16
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
     dev: true
@@ -103,8 +105,8 @@ packages:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
     dev: true
 
-  /@types/node/18.7.14:
-    resolution: {integrity: sha512-6bbDaETVi8oyIARulOE9qF1/Qdi/23z6emrUh0fNJRUmjznqrixD4MpGDdgOFk5Xb0m2H6Xu42JGdvAxaJR/wA==}
+  /@types/node/18.7.16:
+    resolution: {integrity: sha512-EQHhixfu+mkqHMZl1R2Ovuvn47PUw18azMJOTwSZr9/fhzHNGXAJ0ma0dayRVchprpCj0Kc1K1xKoWaATWF1qg==}
     dev: true
 
   /@types/qs/6.9.7:
@@ -119,7 +121,7 @@ packages:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 18.7.14
+      '@types/node': 18.7.16
     dev: true
 
   /@types/strip-bom/3.0.0:
@@ -791,7 +793,7 @@ packages:
     hasBin: true
     dev: true
 
-  /ts-node-dev/2.0.0_typescript@4.8.2:
+  /ts-node-dev/2.0.0_yw6xa4t7bqskzhgfioyr35wfuq:
     resolution: {integrity: sha512-ywMrhCfH6M75yftYvrvNarLEY+SUXtUvU8/0Z6llrHQVBx12GiFk5sStF8UdfE/yfzk9IAq7O5EEbTQsxlBI8w==}
     engines: {node: '>=0.8.0'}
     hasBin: true
@@ -810,7 +812,7 @@ packages:
       rimraf: 2.7.1
       source-map-support: 0.5.21
       tree-kill: 1.2.2
-      ts-node: 10.9.1_typescript@4.8.2
+      ts-node: 10.9.1_yw6xa4t7bqskzhgfioyr35wfuq
       tsconfig: 7.0.0
       typescript: 4.8.2
     transitivePeerDependencies:
@@ -819,7 +821,7 @@ packages:
       - '@types/node'
     dev: true
 
-  /ts-node/10.9.1_typescript@4.8.2:
+  /ts-node/10.9.1_yw6xa4t7bqskzhgfioyr35wfuq:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -838,6 +840,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
+      '@types/node': 18.7.16
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
