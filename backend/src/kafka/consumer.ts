@@ -1,8 +1,6 @@
 import { Kafka } from "kafkajs";
 import { executeCppCode } from "../executeCode";
 
-// const msg = process.argv[2];
-
 
 export const getCodeFromKafka =async ()=>{
     try {
@@ -23,12 +21,6 @@ export const getCodeFromKafka =async ()=>{
                 const value=result.message.value?.toString()!;
                 const msg=JSON.parse(value)
                 executeCppCode(msg)
-
-                // try {
-                    
-                // } catch (error) {
-                    
-                // }
             }
         })
      
