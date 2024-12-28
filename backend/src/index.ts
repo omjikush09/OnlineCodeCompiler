@@ -14,8 +14,8 @@ import { ENVIRONMENT } from "./config.keys";
 
 
 
-run();  // Start Kafka Topic
-getCodeFromKafka();  //Start Kafka Consumer
+// run();  // Start Kafka Topic
+// getCodeFromKafka();  //Start Kafka Consumer
 
 app.use(cors());
 app.use(express.json());
